@@ -104,6 +104,11 @@ function compartirUbicacion(){
     const link=document.createElement("a");link.href=url;link.target="_blank";link.rel="noopener noreferrer";link.textContent="📍 Ver ubicación en Google Maps";
     estado.append(link,document.createElement("br"),document.createElement("br"),document.createTextNode("Comparte este enlace con tu contacto de emergencia."));
   },function(){estado.textContent="No se pudo obtener la ubicación. Revisa los permisos del navegador.";},{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+  
+function avisarPapa(){
+  const mensaje="Hola, necesito ayuda. Por favor, comunícate conmigo.";
+  const wa="https://wa.me/519150000002?text="+encodeURIComponent(mensaje);
+  window.open(wa,"_blank","noopener,noreferrer");
 }
 </script>
 </body>
