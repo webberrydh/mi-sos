@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f6eaff">
-<title>MI SOS 💜 Anna</title>
+<title>MI SOS 💜 Anna </title>
 <style>
 :root{--purple:#8756b5;--deep:#68418d;--lavender:#ead9ff;--pink:#ffe8f4;--ink:#59456b;--muted:#806f91;--line:#f0e4f8}
 *{box-sizing:border-box}
@@ -37,23 +37,23 @@ footer span{color:#9a70bd}
 <div class="container">
   <header class="card header">
     <div class="avatar" aria-hidden="true">🦋💜</div>
-    <h1>Anna Demo</h1>
+    <h1> Santos </h1>
     <p class="subtitle">Mi perfil de emergencia MI SOS</p>
     <p class="welcome">💜 Si necesito ayuda, contacta a mi familia</p>
   </header>
 
   <section class="card" aria-label="Ayuda rápida">
     <button class="button sos" type="button" onclick="activarSOS()">🚨 ACTIVAR AYUDA</button>
-    <p class="sos-note">Obtiene tu ubicación y prepara un mensaje de WhatsApp para mamá. Tú decides si enviarlo.</p>
+    <p class="sos-note">Obtiene tu ubicación y prepara un mensaje de WhatsApp para mi primer contacto de emergencia. Tú decides si enviarlo.</p>
     <p id="sos-estado" role="status" aria-live="polite"></p>
   </section>
 
   <section class="card" aria-labelledby="contacts-title">
     <h2 id="contacts-title">📞 Contactos de emergencia</h2>
-    <a class="button" href="tel:+51950000001">📞 Llamar a mamá</a>
-    <a class="button whatsapp" href="https://wa.me/51950000001" target="_blank" rel="noopener noreferrer">💬 WhatsApp mamá</a>
-    <a class="button" href="tel:+51950000002">📞 Llamar a papá</a>
-    <a class="button whatsapp" href="https://wa.me/51950000002" target="_blank" rel="noopener noreferrer">💬 WhatsApp papá</a>
+    <a class="button" href="tel:+51950102313">📞 Llamar a Crismary Ortega (mamá) </a>
+    <a class="button whatsapp" href="https://wa.me/51950102313" target="_blank" rel="noopener noreferrer">💬 WhatsApp Crismary Ortega (mamá) </a>
+    <a class="button" href="tel:+51924361002">📞 Llamar a José Parra (papá) </a>
+    <a class="button whatsapp" href="https://wa.me/51924361002" target="_blank" rel="noopener noreferrer">💬 WhatsApp José Parra (papá) </a>
   </section>
 
   <section class="card" aria-labelledby="location-title">
@@ -66,10 +66,27 @@ footer span{color:#9a70bd}
   <section class="card" aria-labelledby="medical-title">
     <h2 id="medical-title">🩺 Información médica</h2>
     <div class="medical">
-      <p><span class="label">Tipo de sangre:</span><br>Dato de prueba</p>
-      <p><span class="label">Alergias y condiciones:</span><br>Datos de prueba</p>
-      <p><span class="label">Medicamentos:</span><br>Datos de prueba</p>
-      <p><span class="label">Información adicional:</span><br>Datos de prueba</p>
+      <p><span class="label">Tipo de sangre:</span><br> A+</p>
+<p><span class="label">Alergias:</span</p>
+
+<ul>
+  <li>Polvo</li>
+  <li>Humedad</li>
+</ul>
+
+      <p><span class="label">Medicamentos:</span</p>
+
+<ul>
+  <li>Salbutamol de ser necesario</li>
+  <li>symbicort con periodos de descanso</li>
+</ul>
+<p><span class="label">Información adicional:</span></p>
+
+<ul>
+  <li>Tiene Adenoides grado 1</li>
+  <li> Fue operada de Apendicitis a los 5 años</li>
+</ul>
+</p>
     </div>
   </section>
 
@@ -83,8 +100,8 @@ function activarSOS(){
   navigator.geolocation.getCurrentPosition(function(position){
     const lat=position.coords.latitude,lon=position.coords.longitude;
     const mapa="https://www.google.com/maps?q="+lat+","+lon;
-    const mensaje="Necesito ayuda. Esta es mi ubicación: "+mapa;
-    const wa="https://wa.me/51950000001?text="+encodeURIComponent(mensaje);
+    const mensaje="Te escribo por tu familiar Anna. Esta es mi ubicación: "+mapa;
+    const wa="https://wa.me/51950102313?text="+encodeURIComponent(mensaje);
     estado.replaceChildren();
     const link=document.createElement("a");link.href=wa;link.target="_blank";link.rel="noopener noreferrer";link.textContent="💬 Abrir WhatsApp con mi ubicación";
     estado.append(link,document.createElement("br"),document.createTextNode("Revisa el mensaje y pulsa Enviar en WhatsApp."));
