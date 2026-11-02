@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#FFF0F6">
+
+  <title>MI SOS 💗 Ynés</title>
+
+  <style>
+
+    :root {
+      --purple: #D94F89;
+      --deep: #B8326F;
+      --lavender: #F8D5E5;
+      --pink: #FFF0F6;
+      --ink: #704458;
+      --muted: #A17C91;
+      --line: #F4DCE8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+
+      background: linear-gradient(
+        180deg,
+        #FFF0F6 0%,
+        #FFF8FB 55%,
+        #FCE4EF 100%
+      );
+
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(100%, 480px);
+      margin: auto;
+      padding: 22px 16px 28px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, .94);
+
+      border: 1px solid rgba(248, 213, 229, .8);
+
+      border-radius: 26px;
+      padding: 22px;
+      margin-bottom: 16px;
+
+      box-shadow: 0 8px 24px rgba(217, 79, 137, .12);
+    }
+
+    .header {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+
+      background: linear-gradient(
+        135deg,
+        #F8D5E5 0%,
+        #FFF0F6 58%,
+        #FCE4EF 100%
+      );
+
+      padding: 28px 20px 24px;
+    }
+
+    .header:before,
+    .header:after {
+      content: "✦";
+      position: absolute;
+      color: #fff;
+      font-size: 24px;
+      opacity: .8;
+    }
+
+    .header:before {
+      top: 16px;
+      left: 20px;
+    }
+
+    .header:after {
+      right: 22px;
+      bottom: 20px;
+    }
+
+    .avatar {
+      width: 94px;
+      height: 94px;
+      margin: 0 auto 12px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+      background: #fff;
+
+      border: 4px solid rgba(255, 255, 255, .8);
+
+      box-shadow: 0 5px 16px #E8A8C5;
+
+      font-size: 32px;
+    }
+
+    h1 {
+      margin: 6px 0;
+      color: var(--deep);
+
+      font-size: 28px;
+      letter-spacing: .2px;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #A14E76;
+      font-size: 14px;
+    }
+
+    .welcome {
+      margin: 15px 0 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .sos {
+      background: linear-gradient(
+        135deg,
+        #E45B91,
+        #C83272
+      );
+
+      color: white;
+
+      font-size: 17px;
+      padding: 17px;
+
+      border-radius: 18px;
+
+      box-shadow: 0 6px 16px rgba(200, 50, 114, .24);
+    }
+
+    .sos-note {
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+
+      color: var(--muted);
+
+      margin: 8px 4px 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+
+      color: var(--deep);
+
+      font-size: 18px;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-note {
+      font-size: 13px;
+      line-height: 1.5;
+
+      color: var(--muted);
+
+      margin: -5px 0 12px;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      text-decoration: none;
+      text-align: center;
+
+      background: linear-gradient(
+        135deg,
+        #E58AB5,
+        #D45B91
+      );
+
+      color: white;
+
+      padding: 14px 16px;
+
+      border-radius: 16px;
+
+      margin-top: 10px;
+
+      font-weight: bold;
+
+      border: 0;
+      width: 100%;
+
+      font-size: 15px;
+
+      cursor: pointer;
+
+      box-shadow: 0 4px 10px rgba(217, 79, 137, .16);
+
+      transition: transform .15s, filter .15s;
+    }
+
+    .button:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+
+    .button:active {
+      transform: translateY(0);
+    }
+
+    .whatsapp {
+      background: linear-gradient(
+        135deg,
+        #FCE4EF,
+        #F5C9DD
+      );
+
+      color: #874464;
+
+      box-shadow: none;
+    }
+
+    .location {
+      background: linear-gradient(
+        135deg,
+        #D96A9C,
+        #C34B82
+      );
+    }
+
+    .medical {
+      background: #FFF8FB;
+
+      border: 1px solid #F4D5E5;
+
+      padding: 14px 15px;
+
+      border-radius: 17px;
+
+      margin-top: 10px;
+    }
+
+    .medical p {
+      margin: 0 0 12px;
+
+      line-height: 1.5;
+
+      font-size: 14px;
+    }
+
+    .medical p:last-child {
+      margin-bottom: 0;
+    }
+
+    .medical ul {
+      padding-left: 22px;
+      margin-top: 8px;
+      margin-bottom: 14px;
+    }
+
+    .medical li {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #C34B82;
+    }
+
+    #estado,
+    #sos-estado {
+      font-size: 13px;
+      line-height: 1.5;
+
+      margin: 12px 2px 0;
+
+      color: #A14E76;
+
+      overflow-wrap: anywhere;
+    }
+
+    #estado a,
+    #sos-estado a {
+      color: #C34B82;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+
+      font-size: 12px;
+      line-height: 1.6;
+
+      color: #A17C91;
+
+      padding: 8px 10px 12px;
+    }
+
+    footer span {
+      color: #D45B91;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .button {
+        transition: none;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- PERFIL -->
+
+    <header class="card header">
+
+      <div class="avatar" aria-hidden="true">
+        🦋💗
+      </div>
+
+      <h1>Ynés</h1>
+
+      <p class="subtitle">
+        Mi perfil de emergencia MI SOS
+      </p>
+
+      <p class="welcome">
+        💗 Si necesito ayuda, contacta a mi familia
+      </p>
+
+    </header>
+
+
+    <!-- AYUDA RÁPIDA -->
+
+    <section class="card" aria-label="Ayuda rápida">
+
+      <button
+        class="button sos"
+        type="button"
+        onclick="activarSOS()"
+      >
+        🚨 ACTIVAR AYUDA
+      </button>
+
+      <p class="sos-note">
+        Obtiene tu ubicación y prepara un mensaje de WhatsApp
+        para mi primer contacto de emergencia.
+        Tú decides si enviarlo.
+      </p>
+
+      <p
+        id="sos-estado"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+    </section>
+
+
+    <!-- CONTACTOS -->
+
+    <section
+      class="card"
+      aria-labelledby="contacts-title"
+    >
+
+      <h2 id="contacts-title">
+        📞 Contactos de emergencia
+      </h2>
+
+      <a
+        class="button"
+        href="tel:+51936098097"
+      >
+        📞 Llamar a Estefania (Hija)
+      </a>
+
+      <a
+        class="button whatsapp"
+        href="https://wa.me/51936098907"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        💬 WhatsApp Estefania (hija)
+      </a>
+
+      <a
+        class="button"
+        href="tel:+51922117625"
+      >
+        📞 Llamar a Alessandro (hijo)
+      </a>
+
+      <a
+        class="button whatsapp"
+        href="https://wa.me/51922117625"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        💬 WhatsApp Alessandro (hijo)
+      </a>
+
+    </section>
+
+
+    <!-- UBICACIÓN -->
+
+    <section
+      class="card"
+      aria-labelledby="location-title"
+    >
+
+      <h2 id="location-title">
+        📍 Mi ubicación
+      </h2>
+
+      <p class="section-note">
+        Puedes obtener mi ubicación actual y abrirla
+        en Google Maps.
+      </p>
+
+      <button
+        class="button location"
+        type="button"
+        onclick="compartirUbicacion()"
+      >
+        📍 Compartir ubicación actual
+      </button>
+
+      <p
+        id="estado"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+    </section>
+
+
+    <!-- INFORMACIÓN MÉDICA -->
+
+    <section
+      class="card"
+      aria-labelledby="medical-title"
+    >
+
+      <h2 id="medical-title">
+        🩺 Información médica
+      </h2>
+
+      <div class="medical">
+
+        <p>
+          <span class="label">
+            Tipo de sangre:
+          </span>
+          <br>
+       No registrado
+        </p>
+
+        <p>
+          <span class="label">
+            Alergias:
+          </span>
+        </p>
+
+        <ul>
+          <li>No aplica</li>
+        </ul>
+
+        <p>
+          <span class="label">
+            Medicamentos:
+          </span>
+        </p>
+
+        <ul>
+          <li>Enalapril 1 diaria</li> 
+        </ul>
+
+        <p>
+          <span class="label">
+            Información adicional:
+          </span>
+        </p>
+
+        <ul>
+          <li>Propensa a presión alta</li>
+             </ul>
+
+      </div>
+
+    </section>
+
+
+    <!-- PIE DE PÁGINA -->
+
+    <footer>
+
+      💗 <span>MI SOS</span> · Perfil de emergencia
+
+      <br>
+
+      Datos importantes para emergencias
+
+    </footer>
+
+  </div>
+
+
+  <!-- FUNCIONES -->
+
+  <script>
+
+    // ACTIVAR SOS
+
+    function activarSOS() {
+
+      const estado = document.getElementById("sos-estado");
+
+      if (!navigator.geolocation) {
+
+        estado.textContent =
+          "Este navegador no permite obtener la ubicación. " +
+          "Puedes usar los contactos de abajo.";
+
+        return;
+      }
+
+      estado.textContent =
+        "Obteniendo ubicación para preparar el mensaje...";
+
+      navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+          const lat = position.coords.latitude;
+
+          const lon = position.coords.longitude;
+
+          const mapa =
+            "https://www.google.com/maps?q=" +
+            lat + "," + lon;
+
+          const mensaje =
+            "Te escribo por tu familiar Ynés. " +
+            "Esta es mi ubicación: " + mapa;
+
+          const wa =
+            "https://wa.me/51936098907?text=" +
+            encodeURIComponent(mensaje);
+
+          estado.replaceChildren();
+
+          const link = document.createElement("a");
+
+          link.href = wa;
+
+          link.target = "_blank";
+
+          link.rel = "noopener noreferrer";
+
+          link.textContent =
+            "💬 Abrir WhatsApp con mi ubicación";
+
+          estado.append(
+            link,
+            document.createElement("br"),
+            document.createTextNode(
+              "Revisa el mensaje y pulsa Enviar en WhatsApp."
+            )
+          );
+
+          window.open(
+            wa,
+            "_blank",
+            "noopener,noreferrer"
+          );
+
+        },
+
+        function() {
+
+          estado.textContent =
+            "No se pudo obtener la ubicación. " +
+            "Puedes llamar o escribir a tus contactos de abajo.";
+
+        },
+
+        {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 0
+        }
+
+      );
+
+    }
+
+
+    // COMPARTIR UBICACIÓN
+
+    function compartirUbicacion() {
+
+      const estado = document.getElementById("estado");
+
+      if (!navigator.geolocation) {
+
+        estado.textContent =
+          "Tu navegador no permite obtener la ubicación.";
+
+        return;
+      }
+
+      estado.textContent =
+        "Solicitando permiso para obtener la ubicación...";
+
+      navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+          const lat = position.coords.latitude;
+
+          const lon = position.coords.longitude;
+
+          const url =
+            "https://www.google.com/maps?q=" +
+            lat + "," + lon;
+
+          estado.replaceChildren();
+
+          const link = document.createElement("a");
+
+          link.href = url;
+
+          link.target = "_blank";
+
+          link.rel = "noopener noreferrer";
+
+          link.textContent =
+            "📍 Ver ubicación en Google Maps";
+
+          estado.append(
+
+            link,
+
+            document.createElement("br"),
+
+            document.createElement("br"),
+
+            document.createTextNode(
+              "Comparte este enlace con tu contacto de emergencia."
+            )
+
+          );
+
+        },
+
+        function() {
+
+          estado.textContent =
+            "No se pudo obtener la ubicación. " +
+            "Revisa los permisos del navegador.";
+
+        },
+
+        {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 0
+        }
+
+      );
+
+    }
+
+  </script>
+
+</body>
+
+</html>
+
