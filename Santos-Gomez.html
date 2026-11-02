@@ -88,7 +88,7 @@ function activarSOS(){
   navigator.geolocation.getCurrentPosition(function(position){
     const lat=position.coords.latitude,lon=position.coords.longitude;
     const mapa="https://www.google.com/maps?q="+lat+","+lon;
-    const mensaje="Necesito ayuda. Esta es mi ubicación: "+mapa;
+    const mensaje="Te escribo por tu familiar Santos. Esta es mi ubicación: "+mapa;
     const wa="https://wa.me/51936098907?text="+encodeURIComponent(mensaje);
     estado.replaceChildren();
     const link=document.createElement("a");link.href=wa;link.target="_blank";link.rel="noopener noreferrer";link.textContent="💬 Abrir WhatsApp con mi ubicación";
