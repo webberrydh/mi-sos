@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f6eaff">
+<title>MI SOS 💜 Anna</title>
+<style>
+:root{--purple:#8756b5;--deep:#68418d;--lavender:#ead9ff;--pink:#ffe8f4;--ink:#59456b;--muted:#806f91;--line:#f0e4f8}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#f8f0ff 0%,#fff5fb 55%,#f2eaff 100%);color:var(--ink);min-height:100vh}
+.container{width:min(100%,480px);margin:auto;padding:22px 16px 28px}
+.card{background:rgba(255,255,255,.94);border:1px solid rgba(234,217,255,.8);border-radius:26px;padding:22px;margin-bottom:16px;box-shadow:0 8px 24px rgba(137,91,177,.12)}
+.header{position:relative;overflow:hidden;text-align:center;background:linear-gradient(135deg,#ead7ff 0%,#fff0f8 58%,#f4eaff 100%);padding:28px 20px 24px}
+.header:before,.header:after{content:"✦";position:absolute;color:#fff;font-size:24px;opacity:.8}.header:before{top:16px;left:20px}.header:after{right:22px;bottom:20px}
+.avatar{width:94px;height:94px;margin:0 auto 12px;display:grid;place-items:center;border-radius:50%;background:#fff;border:4px solid rgba(255,255,255,.8);box-shadow:0 5px 16px #c9a8e7;font-size:32px}
+h1{margin:6px 0;color:var(--deep);font-size:28px;letter-spacing:.2px}
+.subtitle{margin:0;color:#765b8f;font-size:14px}
+.welcome{margin:15px 0 0;font-size:14px;font-weight:600}
+.sos{background:linear-gradient(135deg,#e45b91,#c83e79);font-size:17px;padding:17px;border-radius:18px;box-shadow:0 6px 16px rgba(200,62,121,.24)}
+.sos-note{font-size:12px;line-height:1.45;text-align:center;color:var(--muted);margin:8px 4px 0}
+h2{margin:0 0 14px;color:var(--deep);font-size:18px;display:flex;align-items:center;gap:8px}
+.section-note{font-size:13px;line-height:1.5;color:var(--muted);margin:-5px 0 12px}
+.button{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;text-align:center;background:linear-gradient(135deg,#a879d1,#8d64bb);color:white;padding:14px 16px;border-radius:16px;margin-top:10px;font-weight:bold;border:0;width:100%;font-size:15px;cursor:pointer;box-shadow:0 4px 10px rgba(135,86,181,.16);transition:transform .15s,filter .15s}
+.button:hover{filter:brightness(1.03);transform:translateY(-1px)}.button:active{transform:translateY(0)}
+.whatsapp{background:linear-gradient(135deg,#f0dafa,#e2c6f2);color:#55366c;box-shadow:none}.location{background:linear-gradient(135deg,#8c67bb,#7650a7)}
+.medical{background:#fff8fd;border:1px solid #ead6f6;padding:14px 15px;border-radius:17px;margin-top:10px}
+.medical p{margin:0 0 12px;line-height:1.5;font-size:14px}.medical p:last-child{margin-bottom:0}
+.label{font-weight:bold;color:#8756b5}
+#estado{font-size:13px;line-height:1.5;margin:12px 2px 0;color:#765b8f;overflow-wrap:anywhere}#estado a{color:#7650a7;font-weight:bold}
+footer{text-align:center;font-size:12px;line-height:1.6;color:#8a789a;padding:8px 10px 12px}
+footer span{color:#9a70bd}
+@media(prefers-reduced-motion:reduce){.button{transition:none}}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="card header">
+    <div class="avatar" aria-hidden="true">🦋💜</div>
+    <h1>Anna Demo</h1>
+    <p class="subtitle">Mi perfil de emergencia MI SOS</p>
+    <p class="welcome">💜 Si necesito ayuda, contacta a mi familia</p>
+  </header>
+
+  <section class="card" aria-label="Ayuda rápida">
+    <button class="button sos" type="button" onclick="activarSOS()">🚨 ACTIVAR AYUDA</button>
+    <p class="sos-note">Obtiene tu ubicación y prepara un mensaje de WhatsApp para mamá. Tú decides si enviarlo.</p>
+    <p id="sos-estado" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="card" aria-labelledby="contacts-title">
+    <h2 id="contacts-title">📞 Contactos de emergencia</h2>
+    <a class="button" href="tel:+51950000001">📞 Llamar a mamá</a>
+    <a class="button whatsapp" href="https://wa.me/51950000001" target="_blank" rel="noopener noreferrer">💬 WhatsApp mamá</a>
+    <a class="button" href="tel:+51950000002">📞 Llamar a papá</a>
+    <a class="button whatsapp" href="https://wa.me/51950000002" target="_blank" rel="noopener noreferrer">💬 WhatsApp papá</a>
+  </section>
+
+  <section class="card" aria-labelledby="location-title">
+    <h2 id="location-title">📍 Mi ubicación</h2>
+    <p class="section-note">Puedes obtener mi ubicación actual y abrirla en Google Maps.</p>
+    <button class="button location" type="button" onclick="compartirUbicacion()">📍 Compartir ubicación actual</button>
+    <p id="estado" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="card" aria-labelledby="medical-title">
+    <h2 id="medical-title">🩺 Información médica</h2>
+    <div class="medical">
+      <p><span class="label">Tipo de sangre:</span><br>Dato de prueba</p>
+      <p><span class="label">Alergias y condiciones:</span><br>Datos de prueba</p>
+      <p><span class="label">Medicamentos:</span><br>Datos de prueba</p>
+      <p><span class="label">Información adicional:</span><br>Datos de prueba</p>
+    </div>
+  </section>
+
+  <footer>💜 <span>MI SOS</span> · Perfil de demostración<br>Datos ficticios para pruebas</footer>
+</div>
+<script>
+function activarSOS(){
+  const estado=document.getElementById("sos-estado");
+  if(!navigator.geolocation){estado.textContent="Este navegador no permite obtener la ubicación. Puedes usar los contactos de abajo.";return;}
+  estado.textContent="Obteniendo ubicación para preparar el mensaje...";
+  navigator.geolocation.getCurrentPosition(function(position){
+    const lat=position.coords.latitude,lon=position.coords.longitude;
+    const mapa="https://www.google.com/maps?q="+lat+","+lon;
+    const mensaje="Necesito ayuda. Esta es mi ubicación: "+mapa;
+    const wa="https://wa.me/51950000001?text="+encodeURIComponent(mensaje);
+    estado.replaceChildren();
+    const link=document.createElement("a");link.href=wa;link.target="_blank";link.rel="noopener noreferrer";link.textContent="💬 Abrir WhatsApp con mi ubicación";
+    estado.append(link,document.createElement("br"),document.createTextNode("Revisa el mensaje y pulsa Enviar en WhatsApp."));
+    window.open(wa,"_blank","noopener,noreferrer");
+  },function(){estado.textContent="No se pudo obtener la ubicación. Puedes llamar o escribir a tus contactos de abajo.";},{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+}
+
+function compartirUbicacion(){
+  const estado=document.getElementById("estado");
+  if(!navigator.geolocation){estado.textContent="Tu navegador no permite obtener la ubicación.";return;}
+  estado.textContent="Solicitando permiso para obtener la ubicación...";
+  navigator.geolocation.getCurrentPosition(function(position){
+    const lat=position.coords.latitude,lon=position.coords.longitude;
+    const url="https://www.google.com/maps?q="+lat+","+lon;
+    estado.replaceChildren();
+    const link=document.createElement("a");link.href=url;link.target="_blank";link.rel="noopener noreferrer";link.textContent="📍 Ver ubicación en Google Maps";
+    estado.append(link,document.createElement("br"),document.createElement("br"),document.createTextNode("Comparte este enlace con tu contacto de emergencia."));
+  },function(){estado.textContent="No se pudo obtener la ubicación. Revisa los permisos del navegador.";},{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+}
+</script>
+</body>
+</html>
