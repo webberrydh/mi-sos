@@ -52,16 +52,68 @@ footer span{color:#579ed2}
     <a class="button whatsapp" href="https://wa.me/51941313602" target="_blank" rel="noopener noreferrer">💬 WhatsApp Andrea Zárate (hermana)</a>
     <a class="button" href="tel:+51999617180">📞 Llamar a Diana Camarena (amiga)</a>
     <a class="button whatsapp" href="https://wa.me/51999617180" target="_blank" rel="noopener noreferrer">💬 WhatsApp Diana Camarena (amiga)</a>
-  </section>
-  <section class="card" aria-labelledby="location-title">
+  function compartirUbicacion() {
+  const estado = document.getElementById("estado");
 
-    
- <section class="card" aria-labelledby="location-title">
-    <h2 id="location-title">📍 Mi ubicación</h2>
-    <p class="section-note">Puedes obtener mi ubicación actual y abrirla en Google Maps.</p>
-    <button class="button location" type="button" onclick="compartirUbicacion()">📍 Compartir ubicación actual</button>
-    <p id="estado" role="status" aria-live="polite"></p>
-  </section>
+  if (!navigator.geolocation) {
+    estado.textContent = "Tu navegador no permite obtener la ubicación.";
+    return;
+  }
+
+  estado.textContent = "📍 Obteniendo ubicación actual...";
+
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      const url = "https://www.google.com/maps?q=" + lat + "," + lon;
+
+      const mensaje = "Esta es mi ubicación actual: " + url;
+
+      const whatsapp = "https://wa.me/51941313602?text=" +
+        encodeURIComponent(mensaje);
+
+      estado.replaceChildren();
+
+      const mapa = document.createElement("a");
+      mapa.href = url;
+      mapa.target = "_blank";
+      mapa.rel = "noopener noreferrer";
+      mapa.textContent = "📍 Ver mi ubicación en Google Maps";
+
+      const br = document.createElement("br");
+
+      const wa = document.createElement("a");
+      wa.href = whatsapp;
+      wa.target = "_blank";
+      wa.rel = "noopener noreferrer";
+      wa.textContent = "💬 Compartir ubicación por WhatsApp";
+
+      estado.append(mapa, br, br.cloneNode(), wa);
+    },
+
+    function(error) {
+      let mensaje = "No se pudo obtener la ubicación.";
+
+      if (error.code === 1) {
+        mensaje = "Debes permitir el acceso a tu ubicación.";
+      } else if (error.code === 2) {
+        mensaje = "No se pudo detectar tu ubicación. Inténtalo nuevamente.";
+      } else if (error.code === 3) {
+        mensaje = "La ubicación tardó demasiado. Inténtalo nuevamente.";
+      }
+
+      estado.textContent = "⚠️ " + mensaje;
+    },
+
+    {
+      enableHighAccuracy: true,
+      timeout: 30000,
+      maximumAge: 0
+    }
+  );
+}
     
   <section class="card" aria-labelledby="medical-title">
     <h2 id="medical-title">🩺 Información médica</h2>
