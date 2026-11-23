@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#e5f4ff">
 <title>MI SOS 🩵 Marco</title>
+
 <style>
 :root{--purple:#4f91c9;--deep:#286b9e;--lavender:#d8efff;--pink:#eaf7ff;--ink:#35556d;--muted:#66869d;--line:#dceefa}
 *{box-sizing:border-box}
@@ -12,7 +13,9 @@ body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#ef
 .container{width:min(100%,480px);margin:auto;padding:22px 16px 28px}
 .card{background:rgba(255,255,255,.94);border:1px solid rgba(216,239,255,.8);border-radius:26px;padding:22px;margin-bottom:16px;box-shadow:0 8px 24px rgba(73,143,190,.12)}
 .header{position:relative;overflow:hidden;text-align:center;background:linear-gradient(135deg,#d8efff 0%,#f0f9ff 58%,#e4f4ff 100%);padding:28px 20px 24px}
-.header:before,.header:after{content:"✦";position:absolute;color:#fff;font-size:24px;opacity:.8}.header:before{top:16px;left:20px}.header:after{right:22px;bottom:20px}
+.header:before,.header:after{content:"✦";position:absolute;color:#fff;font-size:24px;opacity:.8}
+.header:before{top:16px;left:20px}
+.header:after{right:22px;bottom:20px}
 .avatar{width:94px;height:94px;margin:0 auto 12px;display:grid;place-items:center;border-radius:50%;background:#fff;border:4px solid rgba(255,255,255,.8);box-shadow:0 5px 16px #a8d2ee;font-size:32px}
 h1{margin:6px 0;color:var(--deep);font-size:28px;letter-spacing:.2px}
 .subtitle{margin:0;color:#4f7898;font-size:14px}
@@ -22,40 +25,145 @@ h1{margin:6px 0;color:var(--deep);font-size:28px;letter-spacing:.2px}
 h2{margin:0 0 14px;color:var(--deep);font-size:18px;display:flex;align-items:center;gap:8px}
 .section-note{font-size:13px;line-height:1.5;color:var(--muted);margin:-5px 0 12px}
 .button{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;text-align:center;background:linear-gradient(135deg,#78bce8,#4f9bd0);color:white;padding:14px 16px;border-radius:16px;margin-top:10px;font-weight:bold;border:0;width:100%;font-size:15px;cursor:pointer;box-shadow:0 4px 10px rgba(79,145,201,.16);transition:transform .15s,filter .15s}
-.button:hover{filter:brightness(1.03);transform:translateY(-1px)}.button:active{transform:translateY(0)}
-.whatsapp{background:linear-gradient(135deg,#d8efff,#c5e5fa);color:#285d80;box-shadow:none}.location{background:linear-gradient(135deg,#579ed2,#367eb6)}
+.button:hover{filter:brightness(1.03);transform:translateY(-1px)}
+.button:active{transform:translateY(0)}
+.whatsapp{background:linear-gradient(135deg,#d8efff,#c5e5fa);color:#285d80;box-shadow:none}
+.location{background:linear-gradient(135deg,#579ed2,#367eb6)}
 .medical{background:#f6fbff;border:1px solid #d8ebf8;padding:14px 15px;border-radius:17px;margin-top:10px}
-.medical p{margin:0 0 12px;line-height:1.5;font-size:14px}.medical p:last-child{margin-bottom:0}
+.medical p{margin:0 0 12px;line-height:1.5;font-size:14px}
+.medical p:last-child{margin-bottom:0}
 .label{font-weight:bold;color:#4f91c9}
-#estado{font-size:13px;line-height:1.5;margin:12px 2px 0;color:#4f7898;overflow-wrap:anywhere}#estado a{color:#367eb6;font-weight:bold}
+#estado,#sos-estado{font-size:13px;line-height:1.5;margin:12px 2px 0;color:#4f7898;overflow-wrap:anywhere}
+#estado a,#sos-estado a{color:#367eb6;font-weight:bold}
 footer{text-align:center;font-size:12px;line-height:1.6;color:#7893a6;padding:8px 10px 12px}
 footer span{color:#579ed2}
 @media(prefers-reduced-motion:reduce){.button{transition:none}}
 </style>
 </head>
+
 <body>
 <div class="container">
+
   <header class="card header">
     <div class="avatar" aria-hidden="true">🧸🩵</div>
     <h1>Marco</h1>
     <p class="subtitle">Mi perfil de emergencia MI SOS</p>
     <p class="welcome">🩵 Si necesito ayuda, contacta a mi familia</p>
   </header>
+
   <section class="card" aria-label="Ayuda rápida">
     <button class="button sos" type="button" onclick="activarSOS()">🚨 ACTIVAR AYUDA</button>
     <p class="sos-note">Obtiene tu ubicación y prepara un mensaje de WhatsApp para mi primer contacto de emergencia. Tú decides si enviarlo.</p>
     <p id="sos-estado" role="status" aria-live="polite"></p>
   </section>
+
   <section class="card" aria-labelledby="contacts-title">
     <h2 id="contacts-title">📞 Contactos de emergencia</h2>
+
     <a class="button" href="tel:+51941313602">📞 Llamar a Andrea Zárate (hermana)</a>
     <a class="button whatsapp" href="https://wa.me/51941313602" target="_blank" rel="noopener noreferrer">💬 WhatsApp Andrea Zárate (hermana)</a>
+
     <a class="button" href="tel:+51999617180">📞 Llamar a Diana Camarena (amiga)</a>
     <a class="button whatsapp" href="https://wa.me/51999617180" target="_blank" rel="noopener noreferrer">💬 WhatsApp Diana Camarena (amiga)</a>
-  function compartirUbicacion() {
+  </section>
+
+  <section class="card" aria-labelledby="location-title">
+    <h2 id="location-title">📍 Mi ubicación</h2>
+    <p class="section-note">Obtén tu ubicación actual y compártela con tu contacto de emergencia.</p>
+
+    <button class="button location" type="button" onclick="compartirUbicacion()">
+      📍 Compartir ubicación actual
+    </button>
+
+    <p id="estado" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="card" aria-labelledby="medical-title">
+    <h2 id="medical-title">🩺 Información médica</h2>
+
+    <div class="medical">
+      <p><span class="label">Tipo de sangre:</span><br>No sabe</p>
+
+      <p><span class="label">Alergias:</span></p>
+      <ul>
+        <li>No tiene</li>
+      </ul>
+
+      <p><span class="label">Medicamentos:</span></p>
+      <ul>
+        <li>No lleva tratamientos</li>
+      </ul>
+
+      <p><span class="label">Información adicional:</span></p>
+      <ul>
+        <li>No indica</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    🩵 <span>MI SOS</span> · Perfil de demostración<br>
+    Datos importantes para emergencias
+  </footer>
+
+</div>
+
+<script>
+
+function activarSOS(){
+  const estado = document.getElementById("sos-estado");
+
+  if(!navigator.geolocation){
+    estado.textContent = "Este navegador no permite obtener la ubicación. Puedes usar los contactos de abajo.";
+    return;
+  }
+
+  estado.textContent = "Obteniendo ubicación para preparar el mensaje...";
+
+  navigator.geolocation.getCurrentPosition(function(position){
+
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    const mapa = "https://www.google.com/maps?q=" + lat + "," + lon;
+
+    const mensaje = "Te escribo por tu familiar Marco. Esta es mi ubicación: " + mapa;
+
+    const wa = "https://wa.me/51941313602?text=" + encodeURIComponent(mensaje);
+
+    estado.replaceChildren();
+
+    const link = document.createElement("a");
+    link.href = wa;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "💬 Abrir WhatsApp con mi ubicación";
+
+    estado.append(
+      link,
+      document.createElement("br"),
+      document.createTextNode("Revisa el mensaje y pulsa Enviar en WhatsApp.")
+    );
+
+    window.open(wa, "_blank", "noopener,noreferrer");
+
+  },function(error){
+
+    estado.textContent = "No se pudo obtener la ubicación. Puedes llamar o escribir a tus contactos de abajo.";
+
+  },{
+    enableHighAccuracy:true,
+    timeout:15000,
+    maximumAge:0
+  });
+}
+
+
+function compartirUbicacion(){
+
   const estado = document.getElementById("estado");
 
-  if (!navigator.geolocation) {
+  if(!navigator.geolocation){
     estado.textContent = "Tu navegador no permite obtener la ubicación.";
     return;
   }
@@ -63,7 +171,9 @@ footer span{color:#579ed2}
   estado.textContent = "📍 Obteniendo ubicación actual...";
 
   navigator.geolocation.getCurrentPosition(
-    function(position) {
+
+    function(position){
+
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
 
@@ -71,8 +181,7 @@ footer span{color:#579ed2}
 
       const mensaje = "Esta es mi ubicación actual: " + url;
 
-      const whatsapp = "https://wa.me/51941313602?text=" +
-        encodeURIComponent(mensaje);
+      const whatsapp = "https://wa.me/51941313602?text=" + encodeURIComponent(mensaje);
 
       estado.replaceChildren();
 
@@ -82,7 +191,7 @@ footer span{color:#579ed2}
       mapa.rel = "noopener noreferrer";
       mapa.textContent = "📍 Ver mi ubicación en Google Maps";
 
-      const br = document.createElement("br");
+      const separador = document.createElement("br");
 
       const wa = document.createElement("a");
       wa.href = whatsapp;
@@ -90,80 +199,42 @@ footer span{color:#579ed2}
       wa.rel = "noopener noreferrer";
       wa.textContent = "💬 Compartir ubicación por WhatsApp";
 
-      estado.append(mapa, br, br.cloneNode(), wa);
+      estado.append(
+        mapa,
+        separador,
+        document.createElement("br"),
+        wa
+      );
+
     },
 
-    function(error) {
+    function(error){
+
       let mensaje = "No se pudo obtener la ubicación.";
 
-      if (error.code === 1) {
+      if(error.code === 1){
         mensaje = "Debes permitir el acceso a tu ubicación.";
-      } else if (error.code === 2) {
+      }else if(error.code === 2){
         mensaje = "No se pudo detectar tu ubicación. Inténtalo nuevamente.";
-      } else if (error.code === 3) {
+      }else if(error.code === 3){
         mensaje = "La ubicación tardó demasiado. Inténtalo nuevamente.";
       }
 
       estado.textContent = "⚠️ " + mensaje;
+
     },
 
     {
-      enableHighAccuracy: true,
-      timeout: 30000,
-      maximumAge: 0
+      enableHighAccuracy:true,
+      timeout:30000,
+      maximumAge:0
     }
+
   );
+
 }
-    
-  <section class="card" aria-labelledby="medical-title">
-    <h2 id="medical-title">🩺 Información médica</h2>
-    <div class="medical">
-      <p><span class="label">Tipo de sangre:</span><br>No sabe</p>
-      <p><span class="label">Alergias:</span></p>
-      <ul>
-        <li>No tiene</li>
-      </ul>
-      <p><span class="label">Medicamentos:</span></p>
-      <ul>
-        <li>No lleva tratamientos</li>
-     </ul>
-      <p><span class="label">Información adicional:</span></p>
-      <ul>
-        <li>No indica</li> 
-      </ul>
-    </div>
-  </section>
-  <footer>🩵 <span>MI SOS</span> · Perfil de demostración<br>Datos importantes para emergencias </footer>
-</div>
-<script>
-function activarSOS(){
-  const estado=document.getElementById("sos-estado");
-  if(!navigator.geolocation){estado.textContent="Este navegador no permite obtener la ubicación. Puedes usar los contactos de abajo.";return;}
-  estado.textContent="Obteniendo ubicación para preparar el mensaje...";
-  navigator.geolocation.getCurrentPosition(function(position){
-    const lat=position.coords.latitude,lon=position.coords.longitude;
-    const mapa="https://www.google.com/maps?q="+lat+","+lon;
-    const mensaje="Te escribo por tu familiar Marco. Esta es mi ubicación: "+mapa;
-    const wa="https://wa.me/51941313602?text="+encodeURIComponent(mensaje);
-    estado.replaceChildren();
-    const link=document.createElement("a");link.href=wa;link.target="_blank";link.rel="noopener noreferrer";link.textContent="💬 Abrir WhatsApp con mi ubicación";
-    estado.append(link,document.createElement("br"),document.createTextNode("Revisa el mensaje y pulsa Enviar en WhatsApp."));
-    window.open(wa,"_blank","noopener,noreferrer");
-  },function(){estado.textContent="No se pudo obtener la ubicación. Puedes llamar o escribir a tus contactos de abajo.";},{enableHighAccuracy:true,timeout:15000,maximumAge:0});
-}
-function compartirUbicacion(){
-  const estado=document.getElementById("estado");
-  if(!navigator.geolocation){estado.textContent="Tu navegador no permite obtener la ubicación.";return;}
-  estado.textContent="Solicitando permiso para obtener la ubicación...";
-  navigator.geolocation.getCurrentPosition(function(position){
-    const lat=position.coords.latitude,lon=position.coords.longitude;
-    const url="https://www.google.com/maps?q="+lat+","+lon;
-    estado.replaceChildren();
-    const link=document.createElement("a");link.href=url;link.target="_blank";link.rel="noopener noreferrer";link.textContent="📍 Ver ubicación en Google Maps";
-    estado.append(link,document.createElement("br"),document.createElement("br"),document.createTextNode("Comparte este enlace con tu contacto de emergencia."));
-  },function(){estado.textContent="No se pudo obtener la ubicación. Revisa los permisos del navegador.";},{enableHighAccuracy:true,timeout:15000,maximumAge:0});
-}
+
 </script>
+
 </body>
 </html>
-
