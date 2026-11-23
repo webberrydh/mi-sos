@@ -97,35 +97,134 @@ footer span{color:#9a70bd}
 
   <footer>💜 <span>MI SOS</span> · Perfil de demostración<br>Datos importantes para emergencias </footer>
 </div>
+
 <script>
+
 function activarSOS(){
-  const estado=document.getElementById("sos-estado");
-  if(!navigator.geolocation){estado.textContent="Este navegador no permite obtener la ubicación. Puedes usar los contactos de abajo.";return;}
-  estado.textContent="Obteniendo ubicación para preparar el mensaje...";
+  const estado = document.getElementById("sos-estado");
+
+  if(!navigator.geolocation){
+    estado.textContent = "Este navegador no permite obtener la ubicación. Puedes usar los contactos de abajo.";
+    return;
+  }
+
+  estado.textContent = "Obteniendo ubicación para preparar el mensaje...";
+
   navigator.geolocation.getCurrentPosition(function(position){
-    const lat=position.coords.latitude,lon=position.coords.longitude;
-    const mapa="https://www.google.com/maps?q="+lat+","+lon;
-    const mensaje="Te escribo por tu familiar Anna. Esta es mi ubicación: "+mapa;
-    const wa="https://wa.me/51950102313?text="+encodeURIComponent(mensaje);
+
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    const mapa = "https://www.google.com/maps?q=" + lat + "," + lon;
+
+    const mensaje = "Te escribo por tu familiar Anna. Esta es mi ubicación: " + mapa;
+
+    const wa = "https://wa.me/51950102313?text=" + encodeURIComponent(mensaje);
+
     estado.replaceChildren();
-    const link=document.createElement("a");link.href=wa;link.target="_blank";link.rel="noopener noreferrer";link.textContent="💬 Abrir WhatsApp con mi ubicación";
-    estado.append(link,document.createElement("br"),document.createTextNode("Revisa el mensaje y pulsa Enviar en WhatsApp."));
-    window.open(wa,"_blank","noopener,noreferrer");
-  },function(){estado.textContent="No se pudo obtener la ubicación. Puedes llamar o escribir a tus contactos de abajo.";},{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+
+    const link = document.createElement("a");
+    link.href = wa;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "💬 Abrir WhatsApp con mi ubicación";
+
+    estado.append(
+      link,
+      document.createElement("br"),
+      document.createTextNode("Revisa el mensaje y pulsa Enviar en WhatsApp.")
+    );
+
+    window.open(wa, "_blank", "noopener,noreferrer");
+
+  },function(error){
+
+    estado.textContent = "No se pudo obtener la ubicación. Puedes llamar o escribir a tus contactos de abajo.";
+
+  },{
+    enableHighAccuracy:true,
+    timeout:15000,
+    maximumAge:0
+  });
 }
 
+
 function compartirUbicacion(){
-  const estado=document.getElementById("estado");
-  if(!navigator.geolocation){estado.textContent="Tu navegador no permite obtener la ubicación.";return;}
-  estado.textContent="Solicitando permiso para obtener la ubicación...";
-  navigator.geolocation.getCurrentPosition(function(position){
-    const lat=position.coords.latitude,lon=position.coords.longitude;
-    const url="https://www.google.com/maps?q="+lat+","+lon;
-    estado.replaceChildren();
-    const link=document.createElement("a");link.href=url;link.target="_blank";link.rel="noopener noreferrer";link.textContent="📍 Ver ubicación en Google Maps";
-    estado.append(link,document.createElement("br"),document.createElement("br"),document.createTextNode("Comparte este enlace con tu contacto de emergencia."));
-  },function(){estado.textContent="No se pudo obtener la ubicación. Revisa los permisos del navegador.";},{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+
+  const estado = document.getElementById("estado");
+
+  if(!navigator.geolocation){
+    estado.textContent = "Tu navegador no permite obtener la ubicación.";
+    return;
+  }
+
+  estado.textContent = "📍 Obteniendo ubicación actual...";
+
+  navigator.geolocation.getCurrentPosition(
+
+    function(position){
+
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      const url = "https://www.google.com/maps?q=" + lat + "," + lon;
+
+      const mensaje = "Esta es mi ubicación actual: " + url;
+
+      const whatsapp = "https://wa.me/51950102313?text=" + encodeURIComponent(mensaje);
+
+      estado.replaceChildren();
+
+      const mapa = document.createElement("a");
+      mapa.href = url;
+      mapa.target = "_blank";
+      mapa.rel = "noopener noreferrer";
+      mapa.textContent = "📍 Ver mi ubicación en Google Maps";
+
+      const separador = document.createElement("br");
+
+      const wa = document.createElement("a");
+      wa.href = whatsapp;
+      wa.target = "_blank";
+      wa.rel = "noopener noreferrer";
+      wa.textContent = "💬 Compartir ubicación por WhatsApp";
+
+      estado.append(
+        mapa,
+        separador,
+        document.createElement("br"),
+        wa
+      );
+
+    },
+
+    function(error){
+
+      let mensaje = "No se pudo obtener la ubicación.";
+
+      if(error.code === 1){
+        mensaje = "Debes permitir el acceso a tu ubicación.";
+      }else if(error.code === 2){
+        mensaje = "No se pudo detectar tu ubicación. Inténtalo nuevamente.";
+      }else if(error.code === 3){
+        mensaje = "La ubicación tardó demasiado. Inténtalo nuevamente.";
+      }
+
+      estado.textContent = "⚠️ " + mensaje;
+
+    },
+
+    {
+      enableHighAccuracy:true,
+      timeout:30000,
+      maximumAge:0
+    }
+
+  );
+
 }
+
 </script>
+
 </body>
 </html>
